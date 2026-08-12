@@ -17,8 +17,17 @@ android {
     applicationId = "com.aistudio.templateflow.qxzkp"
     minSdk = 24
     targetSdk = 36
-    versionCode = 4
-    versionName = "1.0.3"
+    versionCode = 1
+    versionName = "1.0"
+
+    // Dynamic version override to ensure every single local or GitHub build increments automatically
+    val dynamicVersionCode = System.getenv("APP_VERSION_CODE")?.toIntOrNull() 
+        ?: (System.currentTimeMillis() / 100000).toInt()
+    val dynamicVersionName = System.getenv("APP_VERSION_NAME") 
+        ?: "1.0.$dynamicVersionCode"
+
+    versionCode = dynamicVersionCode
+    versionName = dynamicVersionName
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
